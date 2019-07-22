@@ -10,7 +10,9 @@ import sys
 
 def extract_results(roll_no, semester_no):
 
-    driver = webdriver.Firefox(executable_path=getcwd()+'\\geckodriver.exe')
+    options = webdriver.FirefoxOptions()
+    options.headless = True
+    driver = webdriver.Firefox(executable_path=getcwd()+'\\geckodriver.exe', options=options)
     driver.get('https://makaut.ucanapply.com/smartexam/public/result-details')
     elem = driver.find_element_by_id("username")
     elem.send_keys(roll_no)
