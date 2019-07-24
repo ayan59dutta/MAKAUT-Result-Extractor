@@ -4,7 +4,7 @@ from email.mime.base import MIMEBase
 from email.mime.text import MIMEText
 from email import encoders
 
-path = 'C:/makaut_result_extractor/'
+path = 'C:/Makaut-Result-Extractor/'
 
 def send_email(roll_no, semester_no, email_id):
 

@@ -4,15 +4,15 @@ from selenium.webdriver.support.ui import Select
 from bs4 import BeautifulSoup
 from pandas import DataFrame
 from io import StringIO
-from os import getcwd
 import sys
 
+path = 'C:/MAKAUT-Result-Extractor/'
 
 def extract_results(roll_no, semester_no):
 
     options = webdriver.FirefoxOptions()
     options.headless = True
-    driver = webdriver.Firefox(executable_path=getcwd()+'\\geckodriver.exe', options=options)
+    driver = webdriver.Firefox(executable_path=path+'geckodriver.exe', options=options)
     driver.get('https://makaut.ucanapply.com/smartexam/public/result-details')
     elem = driver.find_element_by_id("username")
     elem.send_keys(roll_no)
@@ -52,7 +52,7 @@ def extract_results(roll_no, semester_no):
         print(*mar)
         stdout = old_stdout
         
-        with open(roll_no+'_'+semester_no+'.txt', 'w') as fp:
+        with open(path+roll_no+'_'+semester_no+'.txt', 'w') as fp:
             fp.write(text_to_be_written.getvalue())
 
         return True
@@ -62,7 +62,7 @@ def extract_results(roll_no, semester_no):
 
 if __name__ == '__main__':
 
-    roll_no = '11600116060'
-    semester_no = '06'
+    roll_no = input('Enter your MAKAUT roll number:')
+    semester_no = '0' + input('Enter your semester number <1-8>: ')
 
-    extract_results(roll_no, semester_code)
+    extract_results(roll_no, semester_no)

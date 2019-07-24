@@ -1,7 +1,7 @@
 from result_extractor import extract_results
 from notifier import send_email
 
-path = 'C:/makaut_result_extractor/'
+path = 'C:/MAKAUT-Result-Extractor/'
 
 def extract_all(details):
 
