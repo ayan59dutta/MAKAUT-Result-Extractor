@@ -1,4 +1,5 @@
 from result_extractor import extract_results
+from notifier import send_email
 
 path = 'C:/makaut_result_extractor/'
 
@@ -15,8 +16,10 @@ def extract_all(details):
             email_id = student[2]
             
             if extract_results(roll_no, semester_no):
-                desktop_notifier(roll_no, semester_no)
-                send_email(roll_no, semester_no, email_id)
+                try:
+                    send_email(roll_no, semester_no, email_id)
+                except:
+                    pass
                 new_details[row_no][-1] = 'False'
                 changed = True
 
@@ -25,12 +28,12 @@ def extract_all(details):
 
 if __name__ == '__main__':
 
-    with open(path+'details.txt') as fp:
+    with open(path + 'details.txt') as fp:
         details = list(map(lambda x: x.strip(' \n').split(), fp))
 
     changed, new_details = extract_all(details)
 
     if changed:
-        with open(path+'details.txt', 'w') as fp:
+        with open(path + 'details.txt', 'w') as fp:
             fp.write('\n'.join([' '.join(row) for row in new_details]))
             
